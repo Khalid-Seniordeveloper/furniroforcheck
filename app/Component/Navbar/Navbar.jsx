@@ -178,25 +178,69 @@ const Navbar = () => {
         <FaBars className="text-4xl cursor-pointer" />
       </div>
 
+      {/* Mobile menu with animation */}
       {menuOpen && (
-        <div className="absolute top-40 right-0 bg-gray-800 w-[100%] max-w-[400px] h-auto p-4 z-50 transform transition-transform duration-500 ease-in-out">
-          <div className="flex justify-end">
-            <FaTimes className="text-white text-3xl cursor-pointer" onClick={toggleMenu} />
+        <div
+          className={`absolute top-0 right-0 bg-[#B88E2F] w-[100%] mt-[8rem] max-w-[400px] h-auto p-6 z-50 transform transition-transform duration-500 ease-in-out ${
+            menuOpen ? 'translate-x-0' : 'translate-x-full'
+          }`}
+        >
+          <div className="flex justify-end w-[100%]">
+            <FaTimes
+              className="text-white text-3xl cursor-pointer"
+              onClick={toggleMenu}
+            />
           </div>
-          <ul className="text-white text-[1.7rem] mt-4">
-            <li className="mb-4"><Link href="/">Home</Link></li>
-            <li className="mb-4"><Link href="/Shop">Shop</Link></li>
-            <li className="mb-4"><Link href="/Blog">Blog</Link></li>
-            <li className="mb-4"><Link href="/Contact">Contact</Link></li>
+          <ul className="text-[#F9F1E7] w-[100%] text-[1.7rem] mt-6 space-y-6">
+            <li>
+              <Link href="/" className="w-[100%]"  onClick={() => setMenuOpen(false)}>Home</Link>
+            </li>
+            <li>
+              <Link href="/Shop" className=""  onClick={() => setMenuOpen(false)}>Shop</Link>
+            </li>
+            <li>
+              <Link href="/Blog" className=""  onClick={() => setMenuOpen(false)}>Blog</Link>
+            </li>
+            <li>
+              <Link href="/Contact" className=""  onClick={() => setMenuOpen(false)}>Contact</Link>
+            </li>
+            <li onClick={handleSearchToggle} className="" >
+              Search Products
+            </li>
 
             {/* Conditional rendering of login or profile link */}
             {isLoggedIn ? (
-              <li className="mb-4"><Link href="/signin">See Profile</Link></li>
-            ) : (
-              <li className="mb-4"><Link href="/signin">Login</Link></li>
-            )}
+              <li>
+                <Link href="/signin" className=""  onClick={() => setMenuOpen(false)}>See Profile</Link>
+       
 
-            {isAdmin && <li><Link href="/DashBoard">DashBoard</Link></li>}
+              </li>
+            ) : (
+              <li>
+                <Link href="/signin" className=""  onClick={() => setMenuOpen(false)}>Login</Link>
+              </li>
+            )}
+             {isLoggedIn ?(
+               <li>
+               <Link href="/checkout" className=""  onClick={() => setMenuOpen(false)}>Checkout</Link>
+      
+
+             </li>
+             ) : (
+              <li>
+              <Link href="/signup" className=""  onClick={() => setMenuOpen(false)}>Signup</Link>
+     
+
+            </li>
+              
+             
+             )}
+
+            {isAdmin && (
+              <li>
+                <Link href="/DashBoard" className=""  onClick={() => setMenuOpen(false)}>Dashboard</Link>
+              </li>
+            )}
           </ul>
         </div>
       )}

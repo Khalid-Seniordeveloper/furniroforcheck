@@ -4,6 +4,7 @@ import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { app } from "../Firebas/config.js"; 
 import createClient from "@sanity/client";
 import Login from "../Component/Login/Login.jsx";
+import Link from "next/link.js";
 
 // Sanity Client Setup
 const sanity = createClient({
@@ -90,7 +91,7 @@ const Signin = () => {
       ) : error ? (
         <p className="text-center py-6 text-red-600 text-xl">{error}</p>
       ) : orders.length === 0 ? (
-        <p className="text-center py-6 text-gray-600 text-xl">No orders found.</p>
+        <p className="text-center py-6 text-gray-600 text-xl">No orders found! Please go to shop for products ...</p> 
       ) : (
         <div className="overflow-x-auto">
           <table className="w-full border-collapse text-lg">
@@ -139,13 +140,22 @@ const Signin = () => {
     </div>
   
     {/* Logout Button */}
-    <div className="mt-10">
+    <div className="mt-10 flex gap-[2rem]">
       <button
         onClick={handleLogout}
         className="py-4 px-10 bg-[#B88E2F] text-white text-2xl rounded-lg font-semibold shadow-lg hover:bg-[#9a6a1f] transition-transform transform hover:scale-105"
       >
         Logout
       </button>
+      <Link href="/shop">    
+        <button
+ 
+        className="py-4 px-10 bg-[#B88E2F] text-white text-2xl rounded-lg font-semibold shadow-lg hover:bg-[#9a6a1f] transition-transform transform hover:scale-105"
+      >
+        Shop Now
+      </button>
+      </Link>
+
     </div>
   </div>
   

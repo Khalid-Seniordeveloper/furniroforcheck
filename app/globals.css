@@ -456,6 +456,19 @@ font-size: 3.6rem;
   html{
     font-size: 50%;
   }
+  .main-checkout-container{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .sub-checkout-fields{
+    width: 100%;
+  }
+  .sub-checkout-products{
+    width: 100%;
+  }
+  .login-container{
+    width: 90%;
+  }
   .main-container{
     padding:0 2rem;
   }
