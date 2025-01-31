@@ -218,7 +218,7 @@ const ProductPage = ({ product }) => {
                 Add To Cart
               </button>
 
-              <Link href="/checkout">
+              <Link href="/Cart">
                 <button
                   className="px-10 py-5 bg-black text-white text-3xl rounded-lg hover:bg-gray-800"
                 >

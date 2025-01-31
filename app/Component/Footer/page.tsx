@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 
 const Footer = () => {
@@ -8,7 +9,7 @@ const Footer = () => {
     <div className='flex flex-col gap-[4rem] h-[100%] justify-start mt-[5rem] foter-list '>
       <ul>
         <li className='foot-logo'>Funiro</li>
-        <li className='paraa'>Lorem ipsum dolor sit amet consectetur <br /> adipisicing elit. Voluptatum?</li>
+        <li className='paraa'>Transform your home with our premium collection designed to elevate every space.</li>
     
       </ul>
     </div>
@@ -16,26 +17,24 @@ const Footer = () => {
     <div className=' h-[100%] justify-center mt-[5rem] foter-list'>
       <ul className='flex flex-col gap-[4rem]'>
         <li className='paraa'>Links</li>
-        <li className='lists'>HOME</li>
-        <li className='lists'>SHOP</li>
-        <li className='lists'>ABOUT</li>
-        <li className='lists'>CONTACT</li>
-        
+      <Link href="/">
+      <li className='lists'>Home</li>
+      </Link>
+      <Link href="/Shop">
+      <li className='lists'>Shop</li>
+      </Link>
+      <Link href="/Blog">
+      <li className='lists'>Blog</li>
+      </Link>
+      <Link href="/Contact">
+      <li className='lists'>Contact</li>
+      </Link>    
      </ul>
     </div>
     
     
     
-    <div className=' h-[100%] justify-center mt-[5rem] last'>
-      <ul className='flex flex-col gap-[4rem]'>
-        <li className='paraa'>Links</li>
-        <li className='lists'>Payment Options</li>
-        <li className='lists'>Returns</li>
-        <li className='lists'>Privacy Policies</li>
-    
-        
-     </ul>
-    </div>
+
     
     
     <div className=' h-[100%] justify-center mt-[5rem] last'> 

@@ -41,7 +41,7 @@ const page = () => (
 
 
     <h1 className='text-center range text-[2.5rem] mt-20'>Browse The Range</h1>
-    <p className='text-center para'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores, consectetur.</p>
+    <p className='text-center para'>Transform your home with our premium collection designed to elevate every space.</p>
 
 
 <div>

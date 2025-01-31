@@ -1,6 +1,5 @@
 "use client";
 import '../../app/globals.css';
-
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -21,6 +20,21 @@ const CartPage = () => {
     setCart((prevCart) => {
       const newCart = [...prevCart];
       newCart.splice(itemIndex, 1);
+      localStorage.setItem("cart", JSON.stringify(newCart));
+      return newCart;
+    });
+  };
+
+  const handleQuantityChange = (index, change) => {
+    setCart((prevCart) => {
+      const newCart = [...prevCart];
+      const item = newCart[index];
+      const newQuantity = item.quantity + change;
+
+      if (newQuantity > 0) {
+        item.quantity = newQuantity;
+      }
+
       localStorage.setItem("cart", JSON.stringify(newCart));
       return newCart;
     });
@@ -75,10 +89,24 @@ const CartPage = () => {
                     Rs {item.price ? Number(item.price).toFixed(2) : "N/A"}
                   </td>
                   <td className="p-4 text-2xl hidden md:table-cell">
-                    {item.quantity}
+                    <div className="flex items-center gap-4">
+                      <button
+                        onClick={() => handleQuantityChange(index, -1)}
+                        className="px-3 py-1 bg-gray-200 rounded-full hover:bg-gray-300"
+                      >
+                        -
+                      </button>
+                      <span>{item.quantity}</span>
+                      <button
+                        onClick={() => handleQuantityChange(index, 1)}
+                        className="px-3 py-1 bg-gray-200 rounded-full hover:bg-gray-300"
+                      >
+                        +
+                      </button>
+                    </div>
                   </td>
                   <td className="p-4 text-2xl hidden md:table-cell">
-                    Rs {item.price ? Number(item.price * item.quantity).toFixed(2) : "N/A"}
+                    Rs {item.price ? (Number(item.price) * item.quantity).toFixed(2) : "N/A"}
                   </td>
                   <td className="p-4">
                     <button
@@ -105,13 +133,13 @@ const CartPage = () => {
             <span>Total:</span>
             <span>Rs {Number(calculateTotal()).toFixed(2)}</span>
           </div>
-        <Link href="/checkout"> 
-        <button
-            className="w-full bg-black text-white py-4 text-2xl rounded-lg hover:bg-gray-800"
-          >
-            Check Out
-          </button>
-        </Link>
+          <Link href="/checkout">
+            <button
+              className="w-full bg-black text-white py-4 text-2xl rounded-lg hover:bg-gray-800"
+            >
+              Continue
+            </button>
+          </Link>
         </div>
       </div>
     </div>

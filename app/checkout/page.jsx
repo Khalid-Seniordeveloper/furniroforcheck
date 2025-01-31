@@ -5,6 +5,7 @@ import { getAuth } from 'firebase/auth';
 import { app } from '../Firebas/config.js'; // Your Firebase setup
 import Image from 'next/image';
 import createClient from "@sanity/client";
+import { useRouter } from 'next/navigation'; // Correct import for App Router
 
 const sanity = createClient({
   projectId: "tzca0taz",
@@ -24,6 +25,8 @@ const Checkout = () => {
     city: '',
     phone: '',
   });
+  const router = useRouter(); // Using useRouter inside a client-side component
+
   const [total, setTotal] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccessPopUp, setShowSuccessPopUp] = useState(false);
@@ -104,6 +107,8 @@ const Checkout = () => {
       setTimeout(() => {
         setShowSuccessPopUp(false);
       }, 3000);
+
+
     } catch (error) {
       console.error('Error placing order: ', error);
       alert('There was an error placing your order.');
@@ -111,13 +116,18 @@ const Checkout = () => {
       setIsSubmitting(false);
     }
   };
-
+if(showSuccessPopUp){
+  setTimeout(() => {
+    router.push('/signin'); // Redirect after successful signup
+    
+  }, 3000);
+}
   return (
     <div className="min-h-screen bg-[#F9F1E7]">
       {/* Navbar */}
       <nav className="bg-white shadow-lg">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-[#B88E2F]">Furniro - Checkout</h1>
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-[#B88E2F]">Furniro - Order Placing</h1>
         </div>
       </nav>
 
@@ -148,29 +158,29 @@ const Checkout = () => {
       <div className="container main-checkout-container w-[100%] mt-[-5rem]  mx-auto px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Checkout Form */}
         <div className="sub-checkout-products bg-white w-[50%] shadow-2xl rounded-lg p-6 sm:p-8 transition-all duration-300 ease-in-out hover:shadow-3xl">
-          <h3 className="text-2xl font-bold text-gray-700 mb-6">Billing Details</h3>
+          <h3 className="text-4xl font-bold text-gray-700 mb-6">Billing Details</h3>
           <form onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 gap-6">
               {/* Name and Phone */}
               <div>
-                <label className="block text-lg font-semibold mb-2">Name</label>
+                <label className="block text-[2rem] font-semibold mb-2">Name</label>
                 <input
                   type="text"
                   name="name"
                   value={formData.name}
                   onChange={handleInputChange}
-                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#B88E2F] transition duration-300"
+                  className="w-full p-3 border text-[1.6rem] border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#B88E2F] transition duration-300"
                   required
                 />
               </div>
               <div>
-                <label className="block text-lg font-semibold mb-2">Phone</label>
+                <label className="block text-[2rem] font-semibold mb-2">Phone</label>
                 <input
                   type="text"
                   name="phone"
                   value={formData.phone}
                   onChange={handleInputChange}
-                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#B88E2F] transition duration-300"
+                  className="w-full p-3 border border-gray-300 text-[1.6rem] rounded-md focus:outline-none focus:ring-2 focus:ring-[#B88E2F] transition duration-300"
                   required
                 />
               </div>
@@ -179,23 +189,23 @@ const Checkout = () => {
             <div className="grid grid-cols-1 gap-6 mt-6">
               {/* Address and City */}
               <div>
-                <label className="block text-lg font-semibold mb-2">Address</label>
+                <label className="block text-[2rem]  font-semibold mb-2">Address</label>
                 <textarea
                   name="address"
                   value={formData.address}
                   onChange={handleInputChange}
-                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#B88E2F] transition duration-300"
+                  className="w-full p-3 border border-gray-300 text-[1.6rem] rounded-md focus:outline-none focus:ring-2 focus:ring-[#B88E2F] transition duration-300"
                   required
                 />
               </div>
               <div>
-                <label className="block text-lg font-semibold mb-2">City</label>
+                <label className="block text-[2rem] font-semibold mb-2">City</label>
                 <input
                   type="text"
                   name="city"
                   value={formData.city}
                   onChange={handleInputChange}
-                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#B88E2F] transition duration-300"
+                  className="w-full p-3 border border-gray-300 text-[1.6rem] rounded-md focus:outline-none focus:ring-2 focus:ring-[#B88E2F] transition duration-300"
                   required
                 />
               </div>
@@ -203,13 +213,13 @@ const Checkout = () => {
 
             {/* Email Field */}
             <div className="mt-6">
-              <label className="block text-lg font-semibold mb-2">Email</label>
+              <label className="block text-[2rem] font-semibold mb-2">Email</label>
               <input
                 type="email"
                 name="email"
                 value={formData.email}
                 onChange={handleInputChange}
-                className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#B88E2F] transition duration-300"
+                className="w-full p-3 border border-gray-300 text-[1.6rem] rounded-md focus:outline-none focus:ring-2 focus:ring-[#B88E2F] transition duration-300"
                 required
                 disabled
               />
@@ -218,7 +228,7 @@ const Checkout = () => {
             {/* Submit Button */}
             <button
               type="submit"
-              className={`w-full ${isSubmitting ? 'bg-gray-600' : 'bg-[#B88E2F] hover:bg-[#A67C2A]'} text-white py-4 text-xl rounded-lg transition duration-300 ease-in-out mt-8`}
+              className={`w-full ${isSubmitting ? 'bg-gray-600 text-[2rem]'  : 'bg-[#B88E2F] hover:bg-[#A67C2A]'} text-[2rem] text-white py-4 text-xl rounded-lg transition duration-300 ease-in-out mt-8`}
               disabled={isSubmitting}
             >
               {isSubmitting ? 'Placing Order...' : 'Place Order'}

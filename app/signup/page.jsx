@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { auth } from '../Firebas/config.js'; // Adjust the path as needed
-import { createUserWithEmailAndPassword, fetchSignInMethodsForEmail } from 'firebase/auth';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useRouter } from 'next/navigation'; // Correct import for App Router
 import Link from 'next/link.js';
 
@@ -17,30 +17,15 @@ const Signup = () => {
     e.preventDefault();
     setLoading(true); // Set loading state to true when the signup process starts
     setError(''); // Reset error before each submission
-
-    // Check if the email is already registered
     try {
-      const methods = await fetchSignInMethodsForEmail(auth, email);
-      
-      // If the email already exists, show the error
-      if (methods.length > 0) {
-        setLoading(false);
-        setError('Email already exists! Please use a different email.');
-        return; // Stop further execution if email is already in use
-      }
-
-      // Create user if email is not already registered
       await createUserWithEmailAndPassword(auth, email, password);
       router.push('/signin'); // Redirect after successful signup
-
     } catch (err) {
       setLoading(false); // Set loading to false when the process finishes
-      if (err.code === 'auth/invalid-email') {
-        setError('Invalid email format. Please enter a valid email.');
-      } else if (err.code === 'auth/weak-password') {
-        setError('Password is too weak. It must be at least 6 characters long.');
+      if (err.code === 'auth/email-already-in-use') {
+        setError('Email already exists! Please use a different email.');
       } else {
-        setError('Something went wrong. Please try again later.');
+        setError('Email Already exists');
       }
     }
   };
@@ -83,7 +68,7 @@ const Signup = () => {
             {loading ? 'Signing Up...' : 'Sign Up'}
           </button>
         </form>
-        <p className="mt-4 text-center text-xl">
+        <p className="mt-4 text-center text-2xl">
           Already have an account?{' '}
           <Link href="/signin" className="text-blue-500 hover:underline">Login</Link>
         </p>
