@@ -1,6 +1,5 @@
 "use client"
 
-// app/Context/ProductContext.js
 import { createContext, useState, useEffect } from 'react';
 import createClient from '@sanity/client';
 

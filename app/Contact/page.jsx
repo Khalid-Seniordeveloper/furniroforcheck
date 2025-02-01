@@ -60,7 +60,6 @@ Saturday-Sunday: 9:00 - 21:00</span></h1></div>
 
 
 
-{/* dosri div  */}
 <div className='w-[50%] h-[100%] flex flex-col field-container  gap-12'>
 
 <div>

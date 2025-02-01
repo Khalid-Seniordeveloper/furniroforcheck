@@ -113,7 +113,6 @@ const BlogLayout = () => {
 
     <div className="max-w-full mx-auto px-4 py-8">
       <div className="flex flex-col lg:flex-row gap-8">
-        {/* Main Content - Increased width for blog section */}
         <div className="lg:w-full xl:w-4/5">
           {currentPosts.map(post => (
             <article key={post.id} className="mb-20">
@@ -173,9 +172,7 @@ const BlogLayout = () => {
           </div>
         </div>
 
-        {/* Sidebar - Decreased width */}
         <div className="lg:w-full xl:w-1/4">
-          {/* Search Bar */}
           <div className="mb-6">
             <div className="relative">
               <input
@@ -191,7 +188,6 @@ const BlogLayout = () => {
             </div>
           </div>
 
-          {/* Categories - Decreased size */}
           <div className="mb-8">
             <h3 className="text-[2.2rem] font-bold mb-4">Categories</h3>
             <ul className="space-y-2">
@@ -207,7 +203,6 @@ const BlogLayout = () => {
             </ul>
           </div>
 
-          {/* Recent Posts - Adjusted size */}
           <div>
             <h3 className="text-[2.3rem] font-bold mb-4">Recent Posts</h3>
             <div className="space-y-4">

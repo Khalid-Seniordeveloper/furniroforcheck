@@ -3,7 +3,7 @@ import Image from 'next/image';
 const Card = ({ src, title, description, price, cutprice }) => {
   return (
     <div className="w-[28.5rem] h-[44.6rem] card-main-container hover">
-      <div className="flex justify-center w-[100% h-[70%]"> {/* Center the image horizontally */}
+      <div className="flex justify-center w-[100% h-[70%]"> 
         <Image src={src} width={240} height={240} className="object-cover w-[100%] h-[100%]" />
       </div>
       <div className="detail-container w-[100%] p-[2rem]">

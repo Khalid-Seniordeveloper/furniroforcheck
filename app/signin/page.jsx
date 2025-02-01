@@ -6,7 +6,7 @@ import createClient from "@sanity/client";
 import Login from "../Component/Login/Login.jsx";
 import Link from "next/link.js";
 
-// Sanity Client Setup
+// Sanity Client 
 const sanity = createClient({
   projectId: "tzca0taz",
   dataset: "production",
@@ -74,7 +74,6 @@ const Signin = () => {
 
   return (
     <div className="container mx-auto px-6 py-12 flex flex-col items-center">
-    {/* Welcome Message */}
     <div className="text-center">
       <h2 className="text-5xl font-extrabold text-gray-800 animate-fadeIn">
         Welcome, <span className="text-[#B88E2F]">{ user.email}</span> 👋
@@ -139,7 +138,6 @@ const Signin = () => {
       )}
     </div>
   
-    {/* Logout Button */}
     <div className="mt-10 flex gap-[2rem]">
       <button
         onClick={handleLogout}

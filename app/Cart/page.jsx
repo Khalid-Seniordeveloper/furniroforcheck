@@ -46,7 +46,6 @@ const CartPage = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Navbar */}
       <nav className="container mx-auto px-4 py-4 flex justify-between items-center bg-white shadow-md">
         <h1 className="text-4xl font-bold">Furniro</h1>
         <Link href="/Cart" className="flex items-center gap-2 text-sky-500 text-3xl">
@@ -55,7 +54,6 @@ const CartPage = () => {
       </nav>
 
       <div className="container mx-auto px-4 md:px-8 py-12 flex flex-col md:flex-row gap-8">
-        {/* Left - Cart Items (80%) */}
         <div className="w-full md:w-4/5 bg-white shadow-lg rounded-lg p-6 md:p-8">
           <table className="w-full">
             <thead className="bg-beige text-left">
@@ -122,7 +120,6 @@ const CartPage = () => {
           </table>
         </div>
 
-        {/* Right - Cart Totals (20%) */}
         <div className="w-full md:w-1/5 bg-beige p-6 shadow-lg rounded-lg">
           <h3 className="text-3xl font-bold mb-4">Cart Totals</h3>
           <div className="flex justify-between mb-4 text-2xl">

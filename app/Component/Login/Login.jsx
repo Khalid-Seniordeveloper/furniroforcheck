@@ -7,21 +7,21 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);  // Add loading state
-  const router = useRouter(); // Used to redirect the user after login
+  const [loading, setLoading] = useState(false);  
+  const router = useRouter(); 
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setLoading(true);  // Set loading to true when login starts
-    setError('');      // Reset error before each login attempt
+    setLoading(true); 
+    setError('');      
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      router.push('/signin'); // Redirect to the home page or protected page
+      router.push('/signin'); 
     } catch (err) {
       setError('Invalid email or password');
     } finally {
-      setLoading(false);  // Set loading to false when login completes (either success or failure)
+      setLoading(false);  
     }
   };
 

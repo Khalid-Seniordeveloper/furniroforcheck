@@ -1,4 +1,3 @@
-// schemas/order.js
 
 import { defineType } from 'sanity';
 

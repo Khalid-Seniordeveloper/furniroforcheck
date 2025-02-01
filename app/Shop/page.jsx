@@ -59,7 +59,6 @@ const Shop = () => {
         </div>
       </div>
 
-      {/* cards */}
       <div className='main-all-card-container-api flex  justify-center gap-11 mt-12'>
   
   <ProductCards/>

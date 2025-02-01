@@ -125,7 +125,6 @@ const Navbar = () => {
         </ul>
       </div>
 
-      {/* Full-width Search Bar */}
       {isSearchOpen && (
         <div className="absolute top-[6rem] left-0 w-full bg-white p-4 shadow-md z-50">
           <div className="flex justify-between items-center">
@@ -142,7 +141,6 @@ const Navbar = () => {
             />
           </div>
 
-          {/* Show search results below */}
           {filteredProducts.length > 0 && !loading && (
             <div className="mt-4 bg-white shadow-md max-h-[50rem] overflow-y-auto border rounded-lg p-4 z-50">
               <div className="flex overflow-x-auto gap-[2rem]">
@@ -173,12 +171,10 @@ const Navbar = () => {
         </div>
       )}
 
-      {/* Mobile Menu */}
       <div className="flex sm:hidden items-center" onClick={toggleMenu}>
         <FaBars className="text-4xl cursor-pointer" />
       </div>
 
-      {/* Mobile menu with animation */}
       {menuOpen && (
         <div
           className={`absolute top-0 right-0 bg-[#B88E2F] w-[100%] mt-[8rem] max-w-[400px] h-auto p-6 z-50 transform transition-transform duration-500 ease-in-out ${
@@ -208,7 +204,6 @@ const Navbar = () => {
               Search Products
             </li>
 
-            {/* Conditional rendering of login or profile link */}
             {isLoggedIn ? (
               <li>
                 <Link href="/signin" className=""  onClick={() => setMenuOpen(false)}>See Profile</Link>

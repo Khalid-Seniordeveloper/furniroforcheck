@@ -2,10 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import { getAuth } from 'firebase/auth';
-import { app } from '../Firebas/config.js'; // Your Firebase setup
+import { app } from '../Firebas/config.js'; 
 import Image from 'next/image';
 import createClient from "@sanity/client";
-import { useRouter } from 'next/navigation'; // Correct import for App Router
+import { useRouter } from 'next/navigation'; 
 
 const sanity = createClient({
   projectId: "tzca0taz",
@@ -25,7 +25,7 @@ const Checkout = () => {
     city: '',
     phone: '',
   });
-  const router = useRouter(); // Using useRouter inside a client-side component
+  const router = useRouter(); 
 
   const [total, setTotal] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -91,7 +91,6 @@ const Checkout = () => {
       });
       console.log('Order placed:', orderResponse);
 
-      // Show success pop-up and reset form after order is placed
       setShowSuccessPopUp(true);
       setFormData({
         name: '',
@@ -100,10 +99,9 @@ const Checkout = () => {
         city: '',
         phone: '',
       });
-      setCart([]); // Clear the cart
-      localStorage.removeItem('cart'); // Remove cart from localStorage
+      setCart([]); 
+      localStorage.removeItem('cart'); 
 
-      // Hide the success pop-up after 3 seconds
       setTimeout(() => {
         setShowSuccessPopUp(false);
       }, 3000);
@@ -118,20 +116,18 @@ const Checkout = () => {
   };
 if(showSuccessPopUp){
   setTimeout(() => {
-    router.push('/signin'); // Redirect after successful signup
+    router.push('/signin'); 
     
   }, 3000);
 }
   return (
     <div className="min-h-screen bg-[#F9F1E7]">
-      {/* Navbar */}
       <nav className="bg-white shadow-lg">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <h1 className="text-3xl sm:text-4xl font-extrabold text-[#B88E2F]">Furniro - Order Placing</h1>
         </div>
       </nav>
 
-      {/* Welcome Message */}
       <div className="container flex justify-center items-center w-[100%] px-4 sm:px-6 lg:px-8 py-8">
         {user ? (
           <h2 className="text-2xl text-center sm:text-3xl font-semibold text-gray-700 mb-8">
@@ -144,7 +140,6 @@ if(showSuccessPopUp){
         )}
       </div>
 
-      {/* Success Pop-up */}
       {showSuccessPopUp && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
           <div className="bg-white p-6 rounded-lg shadow-xl max-w-sm text-center">
@@ -154,14 +149,11 @@ if(showSuccessPopUp){
         </div>
       )}
 
-      {/* Main Content */}
       <div className="container main-checkout-container w-[100%] mt-[-5rem]  mx-auto px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* Checkout Form */}
         <div className="sub-checkout-products bg-white w-[50%] shadow-2xl rounded-lg p-6 sm:p-8 transition-all duration-300 ease-in-out hover:shadow-3xl">
           <h3 className="text-4xl font-bold text-gray-700 mb-6">Billing Details</h3>
           <form onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 gap-6">
-              {/* Name and Phone */}
               <div>
                 <label className="block text-[2rem] font-semibold mb-2">Name</label>
                 <input
@@ -187,7 +179,6 @@ if(showSuccessPopUp){
             </div>
 
             <div className="grid grid-cols-1 gap-6 mt-6">
-              {/* Address and City */}
               <div>
                 <label className="block text-[2rem]  font-semibold mb-2">Address</label>
                 <textarea
@@ -211,7 +202,6 @@ if(showSuccessPopUp){
               </div>
             </div>
 
-            {/* Email Field */}
             <div className="mt-6">
               <label className="block text-[2rem] font-semibold mb-2">Email</label>
               <input
@@ -225,7 +215,6 @@ if(showSuccessPopUp){
               />
             </div>
 
-            {/* Submit Button */}
             <button
               type="submit"
               className={`w-full ${isSubmitting ? 'bg-gray-600 text-[2rem]'  : 'bg-[#B88E2F] hover:bg-[#A67C2A]'} text-[2rem] text-white py-4 text-xl rounded-lg transition duration-300 ease-in-out mt-8`}
@@ -236,7 +225,6 @@ if(showSuccessPopUp){
           </form>
         </div>
 
-        {/* Cart Summary */}
         <div className="sub-checkout-fields bg-white w-[50%] shadow-2xl rounded-lg p-6 sm:p-8">
           <h3 className="text-2xl font-bold text-gray-700 mb-6">Your Cart</h3>
           <div className="overflow-x-auto">
@@ -278,7 +266,6 @@ if(showSuccessPopUp){
             </table>
           </div>
 
-          {/* Cart Totals */}
           <div className="bg-[#F9F1E7] p-6 mt-6 rounded-lg">
             <h3 className="text-2xl font-bold text-gray-700 mb-4">Cart Totals</h3>
             <div className="flex justify-between mb-4 text-lg">

@@ -4,13 +4,12 @@ import back from '../../assets/back.png'
 const Banner = () => {
   return (
     <div className='backgroundContainer flex'>
-    {/* Use Image component to set background */}
     <div className='imageWrapper'>
       <Image 
-        src={back} // Path to your image in the public folder
+        src={back} 
         alt="Background"
-        layout="fill" // Makes the image cover the container
-        objectFit="cover" // Ensures the image covers the container without distortion
+        layout="fill" 
+        objectFit="cover" 
       />
     </div>
     <div className='content1'>

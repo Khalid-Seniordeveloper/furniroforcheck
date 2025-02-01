@@ -15,8 +15,7 @@ const ProductCardsRelated = () => {
   const [allProducts, setAllProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 4;  // Show 4 products per page
-
+  const productsPerPage = 4;  
   const fetchProducts = async () => {
     try {
       const query = `
@@ -64,7 +63,6 @@ const ProductCardsRelated = () => {
         </div>
       ) : (
         <div>
-          {/* Display products in a responsive grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {paginatedProducts.map((product) => (
               <div key={product._id} className="bg-white shadow-md rounded-lg p-4 hover:shadow-lg transition-shadow duration-300">
@@ -83,7 +81,6 @@ const ProductCardsRelated = () => {
             ))}
           </div>
 
-          {/* Pagination */}
           <div className="flex flex-wrap justify-center mt-10 gap-4 sm:gap-6">
             {Array.from({ length: totalPages }, (_, i) => (
               <button

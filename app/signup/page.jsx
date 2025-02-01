@@ -1,9 +1,9 @@
-'use client'; // This ensures the component is client-side
+'use client';
 
 import { useState } from 'react';
-import { auth } from '../Firebas/config.js'; // Adjust the path as needed
+import { auth } from '../Firebas/config.js'; 
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { useRouter } from 'next/navigation'; // Correct import for App Router
+import { useRouter } from 'next/navigation';
 import Link from 'next/link.js';
 
 const Signup = () => {
@@ -11,17 +11,17 @@ const Signup = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const router = useRouter(); // Using useRouter inside a client-side component
+  const router = useRouter(); 
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    setLoading(true); // Set loading state to true when the signup process starts
-    setError(''); // Reset error before each submission
+    setLoading(true); 
+    setError(''); 
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-      router.push('/signin'); // Redirect after successful signup
+      router.push('/signin'); 
     } catch (err) {
-      setLoading(false); // Set loading to false when the process finishes
+      setLoading(false); 
       if (err.code === 'auth/email-already-in-use') {
         setError('Email already exists! Please use a different email.');
       } else {

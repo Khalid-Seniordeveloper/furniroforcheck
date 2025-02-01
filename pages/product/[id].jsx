@@ -10,9 +10,8 @@ import shopbanner from '../../app/assets/shopbanner.png';
 import ProductCardsRelated from '../../app/ProductCardRelated/page';
 import { useRouter } from 'next/navigation';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { auth } from '../../app/Firebas/config.js';  // Importing Firebase config
+import { auth } from '../../app/Firebas/config.js'; 
 
-// Sanity client configuration
 const sanity = createClient({
   projectId: 'tzca0taz',
   dataset: 'production',
@@ -26,7 +25,7 @@ const ProductPage = ({ product }) => {
   const [selectedColor, setSelectedColor] = useState('purple');
   const [cart, setCart] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(false); // For user auth state
+  const [isAuthenticated, setIsAuthenticated] = useState(false); 
   const router = useRouter();
 
   const sizes = ['XS', 'L', 'XL'];
@@ -36,17 +35,16 @@ const ProductPage = ({ product }) => {
     { id: 'gold', bg: 'bg-yellow-600' },
   ];
 
-  // Firebase auth state listener
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        setIsAuthenticated(true);  // User is authenticated
+        setIsAuthenticated(true);  
       } else {
-        setIsAuthenticated(false); // User is not authenticated
+        setIsAuthenticated(false); 
       }
     });
 
-    return () => unsubscribe(); // Cleanup listener
+    return () => unsubscribe(); 
   }, []);
 
   useEffect(() => {
@@ -62,7 +60,7 @@ const ProductPage = ({ product }) => {
 
   const handleAddToCart = () => {
     if (!isAuthenticated) {
-      setShowPopup(true); // Show the sign-up popup if not authenticated
+      setShowPopup(true); 
       return;
     }
 
@@ -90,11 +88,11 @@ const ProductPage = ({ product }) => {
       return [...prevCart, cartItem];
     });
 
-    router.push('/Cart'); // Redirect to the cart page
+    router.push('/Cart'); 
   };
 
   const handleSignUpRedirect = () => {
-    router.push('/signup'); // Redirect to the signup page
+    router.push('/signup');
   };
 
   const renderStars = () => (
@@ -227,7 +225,6 @@ const ProductPage = ({ product }) => {
               </Link>
             </div>
 
-            {/* SignUp Modal (Popup) */}
             {showPopup && (
               <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50 z-50">
                 <div className="bg-white p-8 rounded-lg w-[400px] text-center">
