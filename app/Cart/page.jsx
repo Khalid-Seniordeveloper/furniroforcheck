@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { BsTrash } from "react-icons/bs";
-
+import { auth } from '../Firebas/config';
 const CartPage = () => {
   const [cart, setCart] = useState([]);
 
@@ -40,10 +40,65 @@ const CartPage = () => {
     });
   };
 
+
   const calculateTotal = () => {
     return cart.reduce((total, item) => total + (Number(item.price) * item.quantity), 0);
   };
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Track login state
+  const [showLoginPopup, setShowLoginPopup] = useState(false); // For showing the login popup
 
+  useEffect(() => {
+    const savedCart = localStorage.getItem("cart");
+    if (savedCart) {
+      const parsedCart = JSON.parse(savedCart);
+      setCart(parsedCart);
+    }
+
+    // Check if the user is logged in using Firebase
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        setIsLoggedIn(true);
+      } else {
+        setIsLoggedIn(false);
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
+  if (cart.length === 0) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex justify-center items-center">
+        <div className="bg-white p-6 rounded-lg text-center">
+          <p className="text-2xl mb-4">Your cart is empty</p>
+          <Link href="/Shop">
+            <button className="bg-blue-500 text-white py-2 px-6 rounded-lg">
+              Go Shopping
+            </button>
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  if (!isLoggedIn) {
+    return (
+      <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center z-50">
+        <div className="bg-white p-6 rounded-lg text-center">
+          <p className="text-2xl mb-4">Please log in first</p>
+          <Link href="/signin">
+            <button className="bg-blue-500 text-white py-2 px-6 rounded-lg">
+              Login
+            </button>
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+
+
+
+  
   return (
     <div className="min-h-screen bg-gray-50">
       <nav className="container mx-auto px-4 py-4 flex justify-between items-center bg-white shadow-md">
